@@ -1,6 +1,3 @@
-Here is a **single complete README file** — just copy-paste everything into your `README.md`:
-
-````markdown
 # School Management API
 
 A RESTful API built with Node.js, Express, and MySQL to manage school data and retrieve schools sorted by proximity to a given location.
@@ -170,4 +167,3 @@ Available in repository:
 
 ## 👨‍💻 Author
 Ravindra Kumar
-````
