@@ -1,39 +1,43 @@
+Here is a **single complete README file** — just copy-paste everything into your `README.md`:
+
+````markdown
 # School Management API
 
-Node.js + Express + MySQL REST API for managing schools with proximity-based sorting.
-
-## Quick Start
-
-### 1. Database Setup (phpMyAdmin)
-Open phpMyAdmin → select your database → click **SQL** tab → paste & run `database_setup.sql`.
-
-### 2. Clone & Install
-```bash
-git clone <your-repo-url>
-cd school-management
-npm install
-```
-
-### 3. Configure Environment
-```bash
-cp .env.example .env
-# Edit .env with your MySQL credentials
-```
-
-### 4. Run
-```bash
-npm start        # production
-npm run dev      # development with auto-reload
-```
+A RESTful API built with Node.js, Express, and MySQL to manage school data and retrieve schools sorted by proximity to a given location.
 
 ---
 
-## API Reference
+## 🚀 Live API
+https://school-management-api-8idl.onrender.com
 
-### POST /addSchool
-Adds a new school to the database.
+---
 
-**Request body (JSON):**
+## 🛠 Tech Stack
+- Node.js
+- Express.js
+- MySQL
+- Railway (Cloud Database)
+- Render (Hosting)
+- Postman (Testing)
+
+---
+
+## 📂 Features
+- Add new school
+- Get schools sorted by distance
+- Input validation
+- MySQL cloud database
+- RESTful API structure
+- Postman collection included
+
+---
+
+## 📡 API Endpoints
+
+### 1️⃣ Add School
+**POST** `/addSchool`
+
+#### Request
 ```json
 {
   "name": "Springdale Public School",
@@ -43,43 +47,127 @@ Adds a new school to the database.
 }
 ```
 
-**Success (201):**
+#### Response
 ```json
 {
   "success": true,
   "message": "School added successfully.",
-  "data": { "id": 5, "name": "...", "address": "...", "latitude": 28.5921, "longitude": 77.046 }
+  "data": {
+    "id": 1,
+    "name": "Springdale Public School",
+    "address": "Sector 21, Dwarka, New Delhi",
+    "latitude": 28.5921,
+    "longitude": 77.046
+  }
 }
 ```
 
 ---
 
-### GET /listSchools?latitude=XX&longitude=YY
-Returns all schools sorted by distance from the given coordinates.
+### 2️⃣ List Schools
+**GET** `/listSchools?latitude=XX&longitude=YY`
 
-**Example:** `GET /listSchools?latitude=28.6139&longitude=77.2090`
+#### Example
+GET /listSchools?latitude=28.6139&longitude=77.2090
 
-**Success (200):**
+#### Response
 ```json
 {
   "success": true,
-  "count": 4,
-  "user_location": { "latitude": 28.6139, "longitude": 77.209 },
+  "count": 1,
+  "user_location": {
+    "latitude": 28.6139,
+    "longitude": 77.209
+  },
   "data": [
-    { "id": 4, "name": "Modern School", ..., "distance_km": 1.58 },
-    ...
+    {
+      "id": 1,
+      "name": "Springdale Public School",
+      "address": "Sector 21, Dwarka, New Delhi",
+      "latitude": 28.5921,
+      "longitude": 77.046,
+      "distance_km": 2.13
+    }
   ]
 }
 ```
 
 ---
 
-## Postman
-Import `postman/School_Management_API.postman_collection.json` into Postman.  
-Set `base_url` variable to your server URL (default: `http://localhost:3000`).
+## 🧪 Testing with Postman
+1. Import Postman collection from `/postman` folder  
+2. Set `base_url` to:  
+```
+https://school-management-api-8idl.onrender.com
+```
+3. Test:
+- POST `/addSchool`
+- GET `/listSchools`
 
-## Deployment (Render — Free Tier)
-1. Push to GitHub.
-2. Go to [render.com](https://render.com) → New Web Service → connect repo.
-3. Set build command: `npm install`, start command: `npm start`.
-4. Add environment variables from `.env.example` in the Render dashboard.
+---
+
+## 🗄 Database Schema
+```sql
+CREATE TABLE schools (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    latitude DOUBLE NOT NULL,
+    longitude DOUBLE NOT NULL
+);
+```
+
+---
+
+## ⚙️ Environment Variables
+```
+DATABASE_URL=your_railway_mysql_url
+PORT=5000
+```
+
+---
+
+## 🧑‍💻 Local Setup (Optional)
+
+### Clone repository
+```bash
+git clone https://github.com/Ravindra-15/school-management-api.git
+cd school-management-api
+```
+
+### Install dependencies
+```bash
+npm install
+```
+
+### Create `.env`
+```
+DATABASE_URL=your_mysql_url
+PORT=5000
+```
+
+### Run server
+```bash
+npm start
+```
+
+---
+
+## 🌍 Deployment
+- Backend hosted on Render
+- MySQL hosted on Railway
+- Environment variables configured in Render dashboard
+
+---
+
+## 📎 Postman Collection
+Available in repository:
+```
+/postman/School_Management_API.postman_collection.json
+```
+
+---
+
+## 👨‍💻 Author
+Ravindra Kumar
+````
