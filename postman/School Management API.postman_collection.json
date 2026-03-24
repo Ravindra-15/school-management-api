@@ -1,0 +1,297 @@
+{
+  "info": {
+    "_postman_id": "f75601e2-4b75-4408-ac1a-4a692431fb9e",
+    "name": "School Management API",
+    "description": "Collection for School Management Node.js APIs — addSchool and listSchools.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41962352"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": "{\"status\":\"ok\",\"message\":\"School Management API is running\"}"
+        }
+      ]
+    },
+    {
+      "name": "Add School — Success",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Kendriya Vidyalaya No. 1\",\n  \"address\": \"Sector 8, R.K. Puram, New Delhi\",\n  \"latitude\": 28.5672,\n  \"longitude\": 77.1881\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/addSchool",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "addSchool"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201 Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kendriya Vidyalaya No. 1\",\n  \"address\": \"Sector 8, R.K. Puram, New Delhi\",\n  \"latitude\": 28.5672,\n  \"longitude\": 77.1881\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/addSchool",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "addSchool"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\",\n  \"data\": {\n    \"id\": 5,\n    \"name\": \"Springdale Public School\",\n    \"address\": \"Sector 21, Dwarka, New Delhi, 110075\",\n    \"latitude\": 28.5921,\n    \"longitude\": 77.046\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Add School — Validation Error",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"address\": \"Some Address\",\n  \"latitude\": 999,\n  \"longitude\": 77.046\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/addSchool",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "addSchool"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "400 Bad Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"address\": \"Some Address\",\n  \"latitude\": 999,\n  \"longitude\": 77.046\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/addSchool",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "addSchool"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"success\": false,\n  \"errors\": [\n    \"name is required and must be a non-empty string.\",\n    \"latitude must be a valid number between -90 and 90.\"\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "List Schools — Sorted by Proximity",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/listSchools?latitude=28.6139&longitude=77.2090",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "listSchools"
+          ],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "28.6139"
+            },
+            {
+              "key": "longitude",
+              "value": "77.2090"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/listSchools?latitude=28.6139&longitude=77.2090",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "listSchools"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "28.6139"
+                },
+                {
+                  "key": "longitude",
+                  "value": "77.2090"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"count\": 4,\n  \"user_location\": { \"latitude\": 28.6139, \"longitude\": 77.209 },\n  \"data\": [\n    { \"id\": 2, \"name\": \"Kendriya Vidyalaya No. 1\", \"address\": \"Sector 8, R.K. Puram, New Delhi\", \"latitude\": 28.5672, \"longitude\": 77.1881, \"distance_km\": 5.57 },\n    { \"id\": 4, \"name\": \"Modern School\",            \"address\": \"Barakhamba Road, New Delhi, 110001\", \"latitude\": 28.6289, \"longitude\": 77.223, \"distance_km\": 1.58 }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "List Schools — Missing Params",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/listSchools",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "listSchools"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "400 Bad Request",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/listSchools",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "listSchools"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"success\": false,\n  \"errors\": [\n    \"latitude query parameter is required.\",\n    \"longitude query parameter is required.\"\n  ]\n}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
